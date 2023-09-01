@@ -1,0 +1,138 @@
+#:include libs/kvs/personal_post.kv
+MDScreen:
+    display_follow_btn: follow_btn
+    name: 'profile'
+    MDBoxLayout:
+        md_bg_color: app.foggy
+        orientation:'vertical'
+
+        MDTopAppBar:
+            id: profile_toolbar
+            md_bg_color: app.light_black
+            elevation: 0
+            anchor_title: "center"
+            padding: [0,0,0,33]
+            left_action_items: [['arrow-left', lambda x: app.currentScreen('main', 'right')]]
+
+        MDBoxLayout:
+            id: profile_box
+            adaptive_height: True
+            orientation: 'vertical'
+            MDBoxLayout:
+                adaptive_height: True
+                MDBoxLayout:
+                    pos_hint: {"top": 0.92}
+                    adaptive_width: True
+                    adaptive_height: True
+                    FitImage:
+                        id: profile_img
+                        source: 'dog.jpg'
+                        radius: 53
+
+                MDGridLayout:
+                    row: 2
+                    cols: 3
+                    row_default_height: 40
+                    row_force_default: True
+                    col_default_width: 90
+                    col_force_default: True
+                    MDLabel:
+                        text: 'Posts'
+                        halign: 'center'
+                        font_size: '12sp'
+                        color: rgba(188,202,228,255)
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                    MDLabel:
+                        text: 'Followers'
+                        halign: 'center'
+                        font_size: '12sp'
+                        color: rgba(188,202,228,255)
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                    MDLabel:
+                        text: 'Following'
+                        font_size: '12sp'
+                        halign: 'center'
+                        color: rgba(188,202,228,255)
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+                    MDLabel:
+                        id: total_user_posts
+                        text: '0'
+                        halign: 'center'
+                        font_size: '14sp'
+                        color: rgba(71,92,119,255)
+                    MDLabel:
+                        id: total_user_followers
+                        text: '0'
+                        halign: 'center'
+                        font_size: '14sp'
+                        color: rgba(71,92,119,255)
+                    MDLabel:
+                        id: total_user_following
+                        text: '0'
+                        halign: 'center'
+                        font_size: '14sp'
+                        color: rgba(71,92,119,255)
+
+            MDBoxLayout:
+                id: profile_desc_box
+                adaptive_height: True
+                orientation: 'vertical'
+                Widget:
+                    size_hint_y: None
+                    height: 10
+                MDLabel:
+                    id: profile_description
+                    text: '-'
+                    halign: 'left'
+                    text_size: self.width, None
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    padding_y: 10
+                    padding_x: 15
+                    size: self.size
+                    font_size: '14sp'
+                    color: rgba(71,92,119,255)
+
+                MDFillRoundFlatButton:
+                    id: follow_btn
+                    text: 'Follow'
+                    size_hint_x: 0.4
+                    pos_hint: {'center_x': 0.5}
+                    theme_text_color: "Custom"
+                    text_color: app.foggy
+                    md_bg_color: app.dark
+                    line_color: app.dark
+                    on_release:
+                        print('followed')
+
+                Widget:
+                    size_hint_y: None
+                    height: 10
+
+                MDProgressBar:
+                    size_hint_x: 1
+                    size_hint_y: None
+                    height: 1
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            pos_hint: {"top": 0.75}
+            ScrollView:
+                id: scroll_view
+                do_scroll_x: False
+                size: self.size
+                bar_width: 0
+                GridLayout:
+                    cols: 1
+                    size_hint_y: None
+                    height: self.minimum_height
+                    MDList:
+                        spacing: "10dp"
+                        id: post_list

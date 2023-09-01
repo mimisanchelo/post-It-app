@@ -1,0 +1,43 @@
+WelcomeScreen:
+    name: 'welcome'
+    MDFloatLayout:
+        md_bg_color: 1,1,1,1
+        FitImage:
+            size_hint_y: .59
+            radius: 0, 0, 20, 20
+            source: 'assets/images/post-it-low-res.png'
+            pos_hint: {"top": 1}
+
+        MDLabel:
+            text: 'Place to write life stories\nand\n share your experience'
+            font_size: '18sp'
+            pos_hint: {'center_y': .36}
+            halign: 'center'
+            theme_text_color: "Custom"
+            text_color: app.dark
+
+        MDRectangleFlatButton:
+            text: 'Login'
+            size_hint: 0.6, 0.08
+            pos_hint: {'center_x': 0.5, 'center_y': 0.20}
+            theme_text_color: "Custom"
+            text_color: app.foggy
+            md_bg_color: app.dark
+            line_color: app.dark
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'login'
+
+
+        MDRectangleFlatButton:
+            text: 'SignUp'
+            size_hint: 0.6, 0.08
+            pos_hint: {'center_x': 0.5, 'center_y': 0.09}
+            theme_text_color: "Custom"
+            text_color: app.dark
+            line_color: app.dark
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'signup'
+
+

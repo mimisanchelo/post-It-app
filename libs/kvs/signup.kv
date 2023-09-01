@@ -1,0 +1,177 @@
+SignUpScreen:
+    name: 'signup'
+    MDFloatLayout:
+        md_bg_color: 1,1,1,1
+        MDIconButton:
+            icon: 'arrow-left'
+            pos_hint: {'center_x': 0.07, 'center_y': .95}
+            text_color: rgba(26,24,58,255)
+            on_release:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'welcome'
+
+        MDCard:
+            size_hint: 0.8, 0.5
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            Carousel:
+                scroll_timeout: 0
+                id: slide
+                MDFloatLayout:
+                    MDTextField:
+                        id: email
+                        hint_text: 'Email'
+                        size_hint_x: .8
+                        pos_hint: {'center_x': .5, 'center_y': .7}
+                        multiline: False
+                        line_color_focus: app.dark
+                    MDTextField:
+                        id: username
+                        hint_text: 'Username'
+                        size_hint_x: .8
+                        pos_hint: {'center_x': .5, 'center_y': .55}
+                        multiline: False
+                        line_color_focus: app.dark
+                    MDTextField:
+                        id: first_name
+                        hint_text: 'First Name'
+                        size_hint_x: .8
+                        pos_hint: {'center_x': .5, 'center_y': .40}
+                        line_color_focus: app.dark
+                        multiline: False
+                    MDFloatLayout:
+                        pos_hint: {'center_x': .45, 'center_y': 0}
+                        size_hint_y: 0.3
+
+                    MDRectangleFlatButton:
+                        text: 'Next'
+                        size_hint: 0.6, 0.08
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.18}
+                        theme_text_color: "Custom"
+                        text_color: app.foggy
+                        md_bg_color: app.dark
+                        line_color: app.dark
+                        on_release:
+                            app.sign_up_validation1(email.text, username.text, first_name.text)
+
+                MDFloatLayout:
+                    MDTextField:
+                        id: password
+                        hint_text: 'Password'
+                        size_hint_x: .8
+                        pos_hint: {'center_x': .5, 'center_y': .55}
+                        multiline: False
+                        password: True
+                        line_color_focus: app.dark
+                    MDTextField:
+                        id: password_re
+                        hint_text: 'Confirm Password'
+                        size_hint_x: .8
+                        line_color_focus: app.dark
+                        pos_hint: {'center_x': .5, 'center_y': .38}
+                        multiline: False
+                        password: True
+                    MDFloatLayout:
+                        pos_hint: {'center_x': .45, 'center_y': 0}
+                        size_hint_y: 0.3
+
+                    MDRectangleFlatButton:
+                        text: 'Previous'
+                        size_hint: 0.35, 0.08
+                        pos_hint: {'center_x': 0.3, 'center_y': 0.18}
+                        theme_text_color: "Custom"
+                        text_color: app.dark
+                        line_color: app.dark
+                        on_release:
+                            app.prev1()
+
+                    MDRectangleFlatButton:
+                        text: 'Next'
+                        size_hint: 0.35, 0.08
+                        pos_hint: {'center_x': 0.7, 'center_y': 0.18}
+                        theme_text_color: "Custom"
+                        text_color: app.foggy
+                        md_bg_color: app.dark
+                        line_color: app.dark
+                        on_release:
+                            app.sign_up_validation2(password.text, password_re.text)
+                MDFloatLayout:
+                    MDTextField:
+                        id: profile_img
+                        hint_text: 'Profile Image URL'
+                        size_hint_x: .8
+                        line_color_focus: app.dark
+                        pos_hint: {'center_x': .5, 'center_y': .55}
+
+                    MDRectangleFlatButton:
+                        text: 'Previous'
+                        size_hint: 0.35, 0.08
+                        pos_hint: {'center_x': 0.3, 'center_y': 0.18}
+                        theme_text_color: "Custom"
+                        text_color: app.dark
+                        line_color: app.dark
+                        on_release:
+                            app.prev2()
+
+                    MDRectangleFlatButton:
+                        text: 'Submit'
+                        size_hint: 0.35, 0.08
+                        pos_hint: {'center_x': 0.7, 'center_y': 0.18}
+                        theme_text_color: "Custom"
+                        text_color: app.foggy
+                        md_bg_color: app.dark
+                        line_color: app.dark
+                        on_release:
+                            app.sign_up_validation(email.text, first_name.text, password.text, username.text, profile_img.text)
+
+        MDLabel:
+            text: 'WELCOME'
+            bold: True
+            color: app.light_black
+            pos_hint: {'center_x': .8, 'center_y': .85}
+            font_style: 'H4'
+        MDLabel:
+            id: contact
+            text: 'Contact'
+            color: app.light_black
+            pos_hint: {'center_x': .67, 'center_y': .72}
+            theme_text_color: 'Custom'
+        MDIconButton:
+            id: num1
+            theme_text_color: 'Custom'
+            icon: 'numeric-1-circle'
+            pos_hint: {'center_x': .23, 'center_y': .68}
+        MDProgressBar:
+            color: app.orange
+            id: progress1
+            size_hint_x: .1
+            pos_hint: {'center_x': .35, 'center_y': .68}
+
+        MDLabel:
+            id: passwordLabel
+            text: 'Password'
+            color: app.light_black
+            pos_hint: {'center_x': .88, 'center_y': .72}
+            user_font_size: '35sp'
+            theme_text_color: 'Custom'
+        MDIconButton:
+            id: num2
+            theme_text_color: 'Custom'
+            icon: 'numeric-2-circle'
+            pos_hint: {'center_x': .47, 'center_y': .68}
+        MDProgressBar:
+            id: progress2
+            size_hint_x: .1
+            color: app.orange
+            pos_hint: {'center_x': .59, 'center_y': .68}
+
+        MDLabel:
+            id: photo
+            text: 'Photo'
+            color: app.light_black
+            pos_hint: {'center_y': .72, 'center_x': 1.17}
+            theme_text_color: 'Custom'
+        MDIconButton:
+            id: num3
+            theme_text_color: 'Custom'
+            icon: 'numeric-3-circle'
+            pos_hint: {'center_x': .71, 'center_y': .68}

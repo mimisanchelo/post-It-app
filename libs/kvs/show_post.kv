@@ -1,0 +1,68 @@
+<ShowPost>
+    orientation: 'vertical'
+    adaptive_height: True
+    MDLabel:
+        id: post_by
+        italic: True
+        font_size: '11sp'
+        halign: 'center'
+        text_size: self.width, None
+        size_hint_y: None
+        height: self.texture_size[1]
+    MDLabel:
+        id: post_title
+        bold: True
+        font_size: '16sp'
+        halign: 'center'
+        text_size: self.width, None
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    MDLabel:
+        id: post_subtitle
+        font_style: 'Subtitle1'
+        text_size: self.width, None
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    MDLabel:
+        id: post_body
+        font_style: 'Body2'
+        text_size: self.width, None
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    FitImage:
+        id: post_img
+        size_hint: None, None
+        width: root.width - 30
+        height: Window.height * 70 / 100
+        radius: [20]
+        fit_mode: 'fill'
+        pos_hint: {'center_x': 0.5}
+
+    Widget:
+        size_hint_y: None
+        height: 15
+
+    MDTextButton:
+        id: to_comments_btn
+        text: 'Read comments'
+        font_size: '12sp'
+        pos_hint: {'center_x': 0.6, 'center_y': 0.5}
+        underline: True
+        size_hint_y: None
+        size_hint_x: 0.5
+        height: self.texture_size[1]
+        on_release:
+            app.currentScreen('comment_page', 'up')
+            app.fetch_comments_all()
+
+    MDProgressBar:
+        size_hint_x: 1
+        size_hint_y: None
+        height: 1
+
+
+
+

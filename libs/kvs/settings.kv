@@ -1,0 +1,119 @@
+SettingsScreen:
+    name: 'settings'
+    md_bg_color: app.foggy
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            id: profile_toolbar
+            md_bg_color: app.light_black
+            elevation: 0
+            anchor_title: "center"
+            left_action_items: [['arrow-left', lambda x: app.currentScreen('main', 'right')]]
+            title: 'Edit profile'
+            padding: [0,0,0,33]
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            size_hint_y: 0.6
+            spacing: 15
+
+            Widget:
+                size_hint_y: None
+                height: 5
+
+            FitImage:
+                id: prof_img_edit
+                source: 'dog.jpg'
+                adaptive_width: True
+                adaptive_height: True
+                pos_hint: {'center_x': .5}
+                radius: 53
+            MDFloatLayout:
+                MDTextField:
+                    id: input_edit_img
+                    hint_text: 'URL Image'
+                    size_hint_x: 0.6
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    line_color_focus: app.dark
+            Widget:
+                size_hint_y: None
+                height: 5
+            MDTextButton:
+                text: "Edit picture"
+                custom_color: app.dark
+                width: 120
+                pos_hint: {'center_x': .5}
+                on_release:
+                    app.settings_update_profile_img(input_edit_img.text)
+
+            Widget:
+                size_hint_y: None
+                height: 5
+        MDFloatLayout:
+            md_bg_color: rgba(178,178,178,255)
+            size_hint: 1, 0.002
+
+
+        MDGridLayout:
+            padding: 20
+            cols: 2
+            rows: 4
+            row_default_height: 70
+            row_force_default: True
+            MDLabel:
+                text: 'Name'
+                padding: [0, 0,0,17]
+            MDFloatLayout:
+                MDTextField:
+                    id: prof_name
+                    size_hint_x: 1.3
+                    pos_hint: {'center_x': .2, 'center_y': .5}
+                    line_color_focus: app.dark
+
+
+            MDLabel:
+                text: 'Username'
+                padding: [0, 0,0,17]
+                col_default_width: 90
+                col_force_default: True
+            MDFloatLayout:
+                MDTextField:
+                    id: prof_username
+                    size_hint_x: 1.3
+                    pos_hint: {'center_x': .2, 'center_y': .5}
+                    line_color_focus: app.dark
+
+            MDLabel:
+                text: 'Description'
+                col_default_width: 90
+                col_force_default: True
+                padding: [0, 0,0,17]
+            MDFloatLayout:
+                MDTextField:
+                    id: prof_description
+                    multiline: True
+                    size_hint_x: 1.3
+                    pos_hint: {'center_x': .2, 'center_y': .5}
+                    line_color_focus: app.dark
+                    max_text_length: 120
+
+    MDRectangleFlatButton:
+        text: 'Confirm Changes'
+        size_hint: 0.4, 0.05
+        pos_hint: {'center_x': 0.5, 'center_y': 0.10}
+        theme_text_color: "Custom"
+        text_color: app.foggy
+        md_bg_color: app.dark
+        line_color: app.dark
+        on_release:
+            app.settings_update_profile_data(prof_name.text, prof_username.text, prof_description.text)
+
+
+
+
+<MDLabel@LabelGrid>
+    text_size: self.width, None
+    size_hint_y: None
+    height: self.texture_size[1]
+
+

@@ -1,0 +1,56 @@
+#:include libs/kvs/commentCard.kv
+MDScreen:
+    name: 'comment_page'
+    md_bg_color: app.foggy
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            md_bg_color: app.light_black
+            id: name_toolbar
+            left_action_items: [['arrow-left', lambda x: app.currentScreen('post_page', 'down')]]
+            elevation: 0
+            padding: [0,0,0,20]
+
+            Image:
+                pos_hint: {'center_x': .35}
+                source: 'assets/images/postIt white.png'
+
+        ScrollView:
+            id: scroll_view
+            do_scroll_x: False
+            size: self.size
+            bar_width: 0
+            MDList:
+                spacing: "10dp"
+                id: comment_list
+
+        MDCard:
+            id: comment_type_card
+            size_hint: None, None
+            height: comment_box.height
+            width: root.width - 30
+            md_bg_color: app.foggy
+            MDRelativeLayout:
+                id: comment_box
+                FitImage:
+                    id: prof_img
+                    source: 'dog.jpg'
+                    radius: 53
+                    size_hint: None, None
+                    height: 55
+                    width: 55
+                    pos_hint: {'center_x': 0.11 , 'center_y': 0.5}
+                MDTextField:
+                    id: comment_type_field
+                    hint_text: 'Type a comment'
+                    size_hint_x: .6
+                    pos_hint: {'center_x': .54, 'center_y': .5}
+                    line_color_focus: app.dark
+                MDIconButton:
+                    id: comment_send
+                    icon: "send"
+                    pos_hint: {"center_x": 0.92, "center_y": .5}
+                    on_release:
+                        app.type_comment(comment_type_field.text)
+
+

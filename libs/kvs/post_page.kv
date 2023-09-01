@@ -1,0 +1,39 @@
+#:include libs/kvs/show_post.kv
+
+MDScreen:
+    name: 'post_page'
+    md_bg_color: app.foggy
+
+    MDBoxLayout:
+        orientation:'vertical'
+        MDTopAppBar:
+            md_bg_color: app.light_black
+            id: name_toolbar
+            left_action_items: [['arrow-left', lambda x: app.currentScreen('main', 'down')]]
+            elevation: 0
+            padding: [0,0,0,20]
+
+            Image:
+                pos_hint: {'center_x': .35}
+                source: 'assets/images/postIt white.png'
+
+        MDGridLayout:
+            cols: 1
+            ScrollView:
+                do_scroll_x: False
+                bar_width: 0
+                id: post_place
+                size_hint: 1, 1
+                pos_hint: {'center_x': 0.5}
+
+
+
+
+<MDLabel@Size>:
+    text_size: self.width, None
+    size_hint_y: None
+    height: self.texture_size[1]
+    padding_y: 10
+    padding_x: 15
+    size: self.size
+

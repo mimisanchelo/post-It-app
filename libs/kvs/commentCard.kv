@@ -1,0 +1,57 @@
+<CommentCard>
+    id: comment_card
+    size_hint: None, None
+    height: comment_box.height
+    width: Window.width - 30
+    md_bg_color: app.foggy
+
+
+    MDRelativeLayout:
+        id: comment_box
+        MDTextButton:
+            id: link_to_user
+            font_size: '11sp'
+            bold:True
+            pos_hint: {'center_x': 0.44, 'center_y': 0.82}
+            text_size: self.width, None
+            size_hint: 0.5, None
+            height: self.texture_size[1]
+            on_release:
+                app.currentScreen('profile', 'left')
+                app.get_profile_user(link_to_user.text)
+
+        FitImage:
+            id: profile_img
+            radius: 53
+            size_hint: None, None
+            height: 55
+            width: 55
+            pos_hint: {'center_x': 0.11 , 'center_y': 0.5}
+        MDLabel:
+            id: comment_body
+            text_size: self.width - (profile_img.width + 10), None
+            size_hint_y: None
+            height: self.texture_size[1]
+            halign: 'left'
+            font_style: 'Caption'
+            pos_hint: {"center_x": .61, "center_y": .44}
+
+        Widget:
+            size_hint_y: None
+            height: 10
+
+        MDLabel:
+            id: comment_time_send
+            text_size: self.width, None
+            size_hint_y: None
+            font_size: '10sp'
+            height: self.texture_size[1]
+            halign: 'left'
+            italic: True
+            color: app.light_black
+            pos_hint: {"center_x": .69, "center_y": .1}
+
+        MDProgressBar:
+            size_hint_x: 1
+            size_hint_y: None
+            height: 1

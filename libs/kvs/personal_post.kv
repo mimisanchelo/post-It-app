@@ -1,0 +1,80 @@
+<PostItem>
+    size_hint_y: None
+    height: '225dp'
+    id: post_block
+
+    MDCard:
+        id: post_id
+        on_release:
+            app.post_open(post_title.text, post_by.text, post_subtitle.text)
+
+        Widget:
+            md_bg_color: 1,0,0,1
+            size_hint_y: 1
+            size_hint_x: 0.5
+
+        MDRelativeLayout:
+            id: post_box
+            MDIconButton:
+                id: edit_post
+                icon: 'pencil'
+                pos_hint: {'center_x': 0.9, 'center_y': 0.92}
+                icon_size: "16sp"
+                on_release:
+                    app.load_post_to_edit(post_title.text, post_subtitle.text)
+            MDTextButton:
+                id: post_by
+                font_size: '12sp'
+                size_hint_x: 1
+                pos_hint: {'center_x': 0.05, 'center_y': 0.92}
+                custom_color: app.dark
+                text_size: self.width, None
+                size_hint_y: None
+                height: self.texture_size[1]
+                on_release:
+                    app.currentScreen('profile', 'left')
+                    app.get_profile_user(post_by.text)
+            MDLabel:
+                id: post_date
+                custom_color: app.light_black
+                text: '2023-08-09'
+                font_size: '10sp'
+                pos_hint: {'center_x': .05, 'center_y': 0.85}
+                color: app.light_black
+                text_size: self.width, None
+                size_hint_y: None
+                height: self.texture_size[1]
+
+            MDLabel:
+                id: post_title
+                pos_hint: {"center_x": .5, "center_y": .68}
+                text: '-'
+                bold: True
+                font_size: '16sp'
+                halign: 'center'
+
+                text_size: self.width, None
+                size_hint_y: None
+                height: self.texture_size[1]
+            MDLabel:
+                id: post_subtitle
+                text: '-'
+                font_style: 'Caption'
+                halign: 'center'
+                pos_hint: {"center_x": .5, "center_y": .30}
+                text_size: self.width, None
+                size_hint_y: None
+                height: self.texture_size[1]
+
+    MDRelativeLayout:
+        pos_hint: {'center_x': 0.18, 'center_y': 0.6}
+
+        FitImage:
+            id: post_img
+            size_hint: None, None
+            width: 135
+            height: 150
+            radius: [10]
+            allow_stretch: True
+            pos_hint: {'center_x': 0.5}
+

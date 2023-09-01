@@ -1,0 +1,214 @@
+MDScreen:
+    name: 'main'
+    MDNavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation:'vertical'
+                    MDTopAppBar:
+                        md_bg_color: app.light_black
+                        id: name_toolbar
+                        left_action_items: [['menu', lambda x: nav_drawer.set_state('open')]]
+                        elevation: 0
+                        padding: [0,0,0,20]
+
+                        Image:
+                            pos_hint: {'center_x': .35}
+                            source: 'assets/images/postIt white.png'
+
+                    MDBottomNavigation:
+
+                        id: nav_bot
+                        panel_color: app.light_black
+                        text_color_active: app.orange
+
+                        MDBottomNavigationItem:
+                            md_bg_color: app.foggy
+                            name: 'screen 1'
+                            text: 'Feed'
+                            icon: 'book'
+                            on_tab_release:
+                                app.load_feed()
+                                app.currentScreen('main', 'right')
+
+
+                            ScrollView:
+                                id: scroll_view
+                                do_scroll_x: False
+                                bar_width: 0
+                                MDList:
+                                    spacing: "10dp"
+                                    id: post_list
+
+
+                        MDBottomNavigationItem:
+                            md_bg_color: app.foggy
+                            name: 'screen 2'
+                            text: 'Create a Post'
+                            icon: 'post'
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                Carousel:
+                                    id: slide
+                                    MDFloatLayout:
+                                        MDTextField:
+                                            id: blog_title
+                                            line_color_focus: app.dark
+                                            hint_text: 'Post Title'
+                                            size_hint_x: .8
+                                            pos_hint: {'center_x': .5, 'center_y': .85}
+                                            max_text_length: 75
+
+                                        MDTextField:
+                                            id: blog_subtitle
+                                            hint_text: 'Post Subtitle'
+                                            size_hint_x: .8
+                                            pos_hint: {'center_x': .5, 'center_y': .60}
+                                            line_color_focus: app.dark
+                                            max_text_length: 100
+
+                                        MDTextField:
+                                            id: blog_img
+                                            hint_text: 'Post URL Image'
+                                            size_hint_x: .8
+                                            pos_hint: {'center_x': .5, 'center_y': .3}
+                                            line_color_focus: app.dark
+
+                                        MDRectangleFlatButton:
+                                            text: 'Next'
+                                            size_hint: 0.6, 0.08
+                                            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+                                            theme_text_color: "Custom"
+                                            text_color: app.foggy
+                                            md_bg_color: app.dark
+                                            line_color: app.dark
+                                            on_release:
+                                                app.to_body_post(blog_title.text, blog_img.text)
+
+                                    MDBoxLayout:
+                                        orientation: 'vertical'
+                                        MDLabel:
+                                            text: 'Blog Content'
+                                            halign: 'center'
+                                            size_hint: 1, 0.15
+
+                                        TextInput:
+                                            padding: 10
+                                            id: blog_body
+                                            size_hint: 0.95, 1
+                                            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                                            multiline: True
+
+                                        Widget:
+                                            size_hint_y: None
+                                            height: 10
+
+
+                                        MDRaisedButton:
+                                            id: post_it_btn
+                                            text: 'Post It'
+                                            size_hint: 0.6, 0.08
+                                            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+                                            theme_text_color: "Custom"
+                                            text_color: app.foggy
+                                            md_bg_color: app.dark
+                                            line_color: app.dark
+                                            on_release:
+                                                app.create_post(blog_title.text, blog_subtitle.text, blog_body.text, blog_img.text)
+
+                                        Widget:
+                                            size_hint_y: None
+                                            height: 10
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: [0, 10, 10, 0]
+            padding: 10
+            md_bg_color: app.foggy
+
+            MDBoxLayout:
+                orientation: 'vertical'
+
+                MDNavigationDrawerMenu:
+                    bar_width: 0
+                    font_size: '5sp'
+                    MDNavigationDrawerHeader:
+                        id: nav_user_data
+                        title: "Your Name"
+                        text: "Your Email"
+                        source: 'dog.jpg'
+                        title_color: app.light_black
+                        text_color: app.light_black
+                        title_font_size: '26sp'
+                        text_font_size: '16sp'
+
+                    MDNavigationDrawerDivider:
+
+                    MDNavigationDrawerLabel:
+                        text: 'Personal'
+                        font_size: '10sp'
+                        text_color: app.foggy
+                    MDNavigationDrawerItem:
+                        text: "Profile"
+                        icon: "face-agent"
+                        on_release:
+                            app.currentScreen('profile', 'left')
+                            app.load_profile()
+                            nav_drawer.set_state('dismiss')
+
+
+                    MDNavigationDrawerItem:
+                        text: "Message"
+                        icon: "inbox"
+                        right_text: '0'
+
+
+                    MDNavigationDrawerDivider:
+
+                    MDNavigationDrawerLabel:
+                        text: 'Some Stuff'
+                        font_size: '10sp'
+                        text_color: app.foggy
+
+                    MDNavigationDrawerItem:
+                        text: "Item"
+                        icon: "language-python"
+                    MDNavigationDrawerItem:
+                        text: "Item"
+                        icon: "language-python"
+                    MDNavigationDrawerItem:
+                        text: "Item"
+                        icon: "language-python"
+
+                    MDNavigationDrawerDivider:
+
+                    MDNavigationDrawerItem:
+                        text: "Settings"
+                        icon: "tools"
+                        on_release:
+                            app.currentScreen('settings', 'left')
+                            app.load_user_settings()
+                            nav_drawer.set_state('dismiss')
+                    MDNavigationDrawerItem:
+                        text: "Logout"
+                        on_release: app.logout()
+                        icon: "logout"
+                    Widget:
+                        size_hint_y: None
+                        height: '60dp'
+
+<Item>
+    ImageLeftWidget:
+        source: root.source
+
+<Item2>
+    IconLeftWidget:
+        icon: root.icon
+
+<MDNavigationDrawerItem@MDNavigationDrawerItem>
+    text_color: app.dark
+    icon_color: app.dark
+    focus_behavior: True
+    _no_ripple_effect: False
+    focus_color: app.orange
+    unfocus_color: app.foggy
