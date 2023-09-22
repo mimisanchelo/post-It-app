@@ -1,4 +1,4 @@
-# post-It-app
+# PostIt app Blog
 <img width="40px" align="left" src="https://github.com/mimisanchelo/stock/assets/80426185/23c2fe40-b0a0-416b-a4be-ce1fb2f00553"/>
 <img width="40px" align="left" src="https://github.com/mimisanchelo/post-It-app/assets/80426185/846201e6-838d-4297-b73b-7a5b5e08ce60"/>
 <img width="40px" align="left" src="https://github.com/mimisanchelo/post-It-app/assets/80426185/f1ec02bf-bd4b-4aa8-af8f-e8f5a46874d0"/>
